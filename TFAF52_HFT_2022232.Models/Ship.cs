@@ -13,7 +13,7 @@ namespace TFAF52_HFT_2022232.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int ShipId { get; set; }
         [StringLength(50)]
         public string ShipName { get; set; }
         public string ShipType { get; set; }

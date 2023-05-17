@@ -13,7 +13,7 @@ namespace TFAF52_HFT_2022232.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int CompanyId { get; set; }
         [StringLength(30)]
         public string CompanyName { get; set; }
         public string Faction { get; set; }
