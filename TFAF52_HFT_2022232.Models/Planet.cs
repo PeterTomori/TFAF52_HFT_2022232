@@ -11,8 +11,9 @@ namespace TFAF52_HFT_2022232.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PlanetId { get; set; }
-        [StringLength(20)]
         public string PlanetName { get; set; }
         public int CompanyId { get; set; }
+
+        public virtual Company Company { get; set; }
     }
 }

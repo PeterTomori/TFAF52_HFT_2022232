@@ -6,7 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ConsoleMenu-simple" Version="2.4.2" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TFAF52_HFT_2022232.Logic\TFAF52_HFT_2022232.Logic.csproj" />
     <ProjectReference Include="..\TFAF52_HFT_2022232.Models\TFAF52_HFT_2022232.Models.csproj" />
+    <ProjectReference Include="..\TFAF52_HFT_2022232.Repository\TFAF52_HFT_2022232.Repository.csproj" />
   </ItemGroup>
 
 </Project>
