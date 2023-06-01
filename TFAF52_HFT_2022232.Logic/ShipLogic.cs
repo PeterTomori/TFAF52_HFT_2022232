@@ -48,6 +48,7 @@ namespace TFAF52_HFT_2022232.Logic
         //Returns the Company who builds the given Ship
         public IEnumerable<Company> ShipManufacturers(string shipname)
         {
+            var read = srepo.ReadAll();
             var ships = from x in srepo.ReadAll()
                         where x.ShipName == shipname
                         select x.Company;

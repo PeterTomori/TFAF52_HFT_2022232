@@ -49,6 +49,7 @@ namespace TFAF52_HFT_2022232.Logic
         //Returns given Company's Planet(s) 
         public IEnumerable<Planet> OwnedByCompany(string company)
         {
+            var result = this.repo.ReadAll();
             var planetsOfCompanies = (from x in this.repo.ReadAll()
                                       where x.CompanyName == company
                                       select x.Planets).SelectMany(t => t);
