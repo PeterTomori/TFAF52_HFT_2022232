@@ -37,7 +37,7 @@ namespace TFAF52_HFT_2022232.Endpoint.Controllers
             this.logic.Create(value);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Update([FromBody] Company value)
         {
             this.logic.Update(value);
