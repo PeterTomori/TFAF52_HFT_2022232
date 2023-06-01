@@ -56,7 +56,11 @@ namespace TFAF52_HFT_2022232.Repository
                 new Planet(){PlanetId = 8, PlanetName = "Castell" , CompanyId = 6},
                 new Planet(){PlanetId = 9, PlanetName = "Lothal" , CompanyId = 2},
                 new Planet(){PlanetId = 10, PlanetName = "Naboo" , CompanyId = 8},
-                new Planet(){PlanetId = 11, PlanetName = "Rothana" , CompanyId = 2}
+                new Planet(){PlanetId = 11, PlanetName = "Rothana" , CompanyId = 2},
+                new Planet(){PlanetId = 12, PlanetName = "Fresia" , CompanyId = 10},
+                new Planet(){PlanetId = 13, PlanetName = "Nimban" , CompanyId = 11},
+                new Planet(){PlanetId = 14, PlanetName = "Colla" , CompanyId = 12},
+                new Planet(){PlanetId = 15, PlanetName = "Koensayr" , CompanyId = 9},
             });
 
             modelBuilder.Entity<Company>().HasData(new Company[]
@@ -80,11 +84,11 @@ namespace TFAF52_HFT_2022232.Repository
                 new Ship(){ShipId = 1, ShipName = "Mon Calamari Cruiser", ShipType = "Capital Ship", CompanyId = 1},
                 new Ship(){ShipId = 2, ShipName = "EF76 Nebulon-B escort frigate", ShipType = "Frigate", CompanyId = 2},
                 new Ship(){ShipId = 3, ShipName = "CR90 corvette", ShipType = "Corvette", CompanyId = 3},
-                new Ship(){ShipId = 4, ShipName = "X-wing starfighter ", ShipType = "Starfighter", CompanyId = 10},
+                new Ship(){ShipId = 4, ShipName = "X-wing starfighter", ShipType = "Starfighter", CompanyId = 10},
                 new Ship(){ShipId = 5, ShipName = "BTL Y-wing starfighter", ShipType = "Starfighter", CompanyId = 9},
-                new Ship(){ShipId = 6, ShipName = "Executor-class Star Dreadnought ", ShipType = "Dreadnought", CompanyId = 2},
+                new Ship(){ShipId = 6, ShipName = "Executor-class Star Dreadnought", ShipType = "Dreadnought", CompanyId = 2},
                 new Ship(){ShipId = 7, ShipName = "Imperial II-class Star Destroyer", ShipType = "Capital Ship", CompanyId = 2},
-                new Ship(){ShipId = 8, ShipName = "Victory II-class Star Destroyer ", ShipType = "Frigate", CompanyId = 2},
+                new Ship(){ShipId = 8, ShipName = "Victory II-class Star Destroyer", ShipType = "Frigate", CompanyId = 2},
                 new Ship(){ShipId = 9, ShipName = "Tartan-class patrol cruiser", ShipType = "Corvette", CompanyId = 5},
                 new Ship(){ShipId = 10, ShipName = "TIE Fighter", ShipType = "Starfighter", CompanyId = 6},
                 new Ship(){ShipId = 11, ShipName = "TIE Bomber", ShipType = "Starfighter", CompanyId = 6},
