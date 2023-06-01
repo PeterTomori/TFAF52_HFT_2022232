@@ -30,5 +30,14 @@ namespace TFAF52_HFT_2022232.Models
             Ships = new HashSet<Ship>();
             Planets = new HashSet<Planet>();
         }
+
+        public Company(int id, string name, string faction)
+        {
+            CompanyId = id;
+            CompanyName = name;
+            Faction = faction;
+            Ships = new HashSet<Ship>();
+            Planets = new HashSet<Planet>();
+        }
     }
 }

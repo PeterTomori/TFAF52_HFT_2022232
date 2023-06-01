@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace TFAF52_HFT_2022232.Models
 {
@@ -14,6 +15,19 @@ namespace TFAF52_HFT_2022232.Models
         public string PlanetName { get; set; }
         public int CompanyId { get; set; }
 
+        [JsonIgnore]
         public virtual Company Company { get; set; }
+
+        public Planet()
+        {
+
+        }
+
+        public Planet(int id, string name, int companyId)
+        {
+            PlanetId = id;
+            PlanetName = name;
+            CompanyId = companyId;
+        }
     }
 }
