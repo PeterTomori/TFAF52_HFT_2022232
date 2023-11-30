@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using TFAF52_HFT_2022232.Logic;
 using TFAF52_HFT_2022232.Models;
 using TFAF52_HFT_2022232.Repository;
+using TFAF52_HFT_2022232.Endpoint.Services;
 
 namespace TFAF52_HFT_2022232.Endpoint
 {
@@ -36,6 +37,8 @@ namespace TFAF52_HFT_2022232.Endpoint
             services.AddTransient<IShipLogic, ShipLogic>();
             services.AddTransient<ICompanyLogic, CompanyLogic>();
             services.AddTransient<IPlanetLogic, PlanetLogic>();
+
+            services.AddSignalR();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -70,6 +73,7 @@ namespace TFAF52_HFT_2022232.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
