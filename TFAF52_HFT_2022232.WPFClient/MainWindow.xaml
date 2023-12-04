@@ -13,6 +13,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <ListBox ItemsSource="{Binding Companies}" SelectedItem="{Binding SelectedCompany}">
             <ListBox.ItemTemplate>
@@ -22,11 +24,36 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
-            <Label Content="Name" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedCompany.CompanyName}" Padding="10" Margin="0,0,0,30"/>
-            <Button Content="Create Company" Command="{Binding CreateCompanyCommand}" Margin="10" Padding="10" />
-            <Button Content="Delete Company" Command="{Binding DeleteCompanyCommand}" Margin="10" Padding="10" />
-            <Button Content="Update Company" Command="{Binding UpdateCompanyCommand}" Margin="10" Padding="10" />
+            <Label Content="Company Name" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedCompany.CompanyName}" Padding="10" Margin="0,0,0,20"/>
+            <Label Content="Company Id" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedCompany.CompanyId}" Padding="10" Margin="0,0,0,20" IsEnabled="False"/>
+            <Label Content="Faction" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedCompany.Faction}" Padding="10" Margin="0,0,0,20"/>
+            <Button Content="Create Company" Command="{Binding CreateCompanyCommand}" Margin="10" Padding="5" />
+            <Button Content="Delete Company" Command="{Binding DeleteCompanyCommand}" Margin="10" Padding="5" />
+            <Button Content="Update Company" Command="{Binding UpdateCompanyCommand}" Margin="10" Padding="5" />
+        </StackPanel>
+
+        <ListBox ItemsSource="{Binding Ships}" SelectedItem="{Binding SelectedShip}" Grid.Column="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding ShipName}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="3">
+            <Label Content="Ship Name" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedShip.ShipName}" Padding="10" Margin="0,0,0,30"/>
+            <Label Content="Ship Id" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedShip.ShipId}" Padding="10" Margin="0,0,0,20" IsEnabled="False"/>
+            <Label Content="Ship Type" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedShip.ShipType}" Padding="10" Margin="0,0,0,30"/>
+            <Label Content="Company Id" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedShip.CompanyId}" Padding="10" Margin="0,0,0,30"/>
+            <Button Content="Create Ship" Command="{Binding CreateShipCommand}" Margin="10" Padding="10" />
+            <Button Content="Delete Ship" Command="{Binding DeleteShipCommand}" Margin="10" Padding="10" />
+            <Button Content="Update Ship" Command="{Binding UpdateShipCommand}" Margin="10" Padding="10" />
         </StackPanel>
     </Grid>
 </Window>

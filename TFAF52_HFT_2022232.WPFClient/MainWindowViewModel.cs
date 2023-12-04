@@ -129,7 +129,8 @@ namespace TFAF52_HFT_2022232.WPFClient
                 {
                     Companies.Add(new Company()
                     {
-                        CompanyName = SelectedCompany.CompanyName
+                        CompanyName = SelectedCompany.CompanyName,
+                        Faction = SelectedCompany.Faction
                     });
                 });
 
@@ -155,6 +156,7 @@ namespace TFAF52_HFT_2022232.WPFClient
                     Planets.Add(new Planet()
                     {
                         PlanetName = SelectedPlanet.PlanetName
+
                     });
                 });
 
@@ -179,7 +181,9 @@ namespace TFAF52_HFT_2022232.WPFClient
                 {
                     Ships.Add(new Ship()
                     {
-                        ShipName = SelectedShip.ShipName
+                        ShipName = SelectedShip.ShipName,
+                        ShipType = SelectedShip.ShipType,
+                        CompanyId = SelectedShip.CompanyId
                     });
                 });
 
