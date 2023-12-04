@@ -66,6 +66,12 @@ namespace TFAF52_HFT_2022232.Endpoint
                 await context.Response.WriteAsJsonAsync(response);
             }));
 
+            app.UseCors(x => x
+                    .AllowCredentials()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .WithOrigins("http://localhost:5052"));
+
             app.UseRouting();
 
             app.UseAuthorization();
