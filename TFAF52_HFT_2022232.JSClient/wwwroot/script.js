@@ -1,10 +1,17 @@
 ﻿let companies = [];
+let planets = [];
+let ships = [];
+
 let connection = null;
 
 let companyIdToUpdate = -1;
+let planetIdToUpdate = -1;
+let shipIdToUpdate = -1;
 
-getdata();
+getcompanydata();
 setupSignalR();
+getplanetdata();
+getshipdata();
 
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
@@ -13,15 +20,39 @@ function setupSignalR() {
         .build();
 
     connection.on("CompanyCreated", (user, message) => {
-        getdata();
+        getcompanydata();
     });
 
     connection.on("CompanyDeleted", (user, message) => {
-        getdata();
+        getcompanydata();
     });
 
     connection.on("CompanyUpdated", (user, message) => {
-        getdata();
+        getcompanydata();
+    });
+
+    connection.on("PlanetCreated", (user, message) => {
+        getplanetdata();
+    });
+
+    connection.on("PlanetDeleted", (user, message) => {
+        getplanetdata();
+    });
+
+    connection.on("PlanetUpdated", (user, message) => {
+        getplanetdata();
+    });
+
+    connection.on("ShipCreated", (user, message) => {
+        getshipdata();
+    });
+
+    connection.on("ShipDeleted", (user, message) => {
+        getshipdata();
+    });
+
+    connection.on("ShipUpdated", (user, message) => {
+        getshipdata();
     });
 
     connection.onclose(async () => {
@@ -40,48 +71,109 @@ async function start() {
     }
 };
 
-async function getdata() {
+async function getcompanydata() {
     await fetch('http://localhost:27110/company')
         .then(x => x.json())
         .then(y => {
             companies = y;
-            //console.log(companies);
-            display();
+            companydisplay();
         });
 }
 
-function display() {
-    document.getElementById('resultarea').innerHTML = "";
+async function getplanetdata() {
+    await fetch('http://localhost:27110/company')
+        .then(x => x.json())
+        .then(y => {
+            planets = y;
+            planetdisplay();
+        });
+}
+
+async function getshipdata() {
+    await fetch('http://localhost:27110/company')
+        .then(x => x.json())
+        .then(y => {
+            ships = y;
+            shipdisplay();
+        });
+}
+
+function companydisplay() {
+    document.getElementById('companyresultarea').innerHTML = "";
     companies.forEach(t => {
-        document.getElementById('resultarea').innerHTML +=
+        document.getElementById('companyresultarea').innerHTML +=
         "<tr><td>" + t.companyId + "</td><td>" + t.companyName + "</td><td>" + t.faction +
             "</td><td>" + `<button type="button" onclick="remove(${t.companyId})">Delete</button>` +
-        `<button type="button" onclick="showupdate(${t.companyId})">Update</button>` + "</td></tr>";
+        `<button type="button" onclick="companyshowupdate(${t.companyId})">Update</button>` + "</td></tr>";
         console.log(t.companyName);
     });
 }
 
-function remove(id) {
-    fetch('http://localhost:27110/company/' + id, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json', },
-        body: null
-    })
-        .then(response => response)
-        .then(data => {
-            console.log('Success:', data);
-            getdata();
-        })
-        .catch((error) => { console.error('Error:', error); })
+function planetdisplay() {
+    document.getElementById('planetresultarea').innerHTML = "";
+    planets.forEach(t => {
+        document.getElementById('planetresultarea').innerHTML +=
+            "<tr><td>" + t.planetId + "</td><td>" + t.planetName + "</td><td>" + t.companyId + "</td><td>" +
+            `<button type="button" onclick="remove(${t.planetId})">Delete</button>` +
+            `<button type="button" onclick="planetshowupdate(${t.planetId})">Update</button>` + "</td></tr>";
+        console.log(t.planetName);
+    });
 }
 
-function showupdate(id) {
+function shipdisplay() {
+    document.getElementById('shipresultarea').innerHTML = "";
+    ships.forEach(t => {
+        document.getElementById('shipresultarea').innerHTML +=
+            "<tr><td>" + t.shipId + "</td><td>" + t.shipName + "</td><td>" + t.shipType + "</td><td>" + t.companyId +
+            "</td><td>" + `<button type="button" onclick="remove(${t.shipId})">Delete</button>` +
+            `<button type="button" onclick="shipshowupdate(${t.shipId})">Update</button>` + "</td></tr>";
+        console.log(t.shipName);
+    });
+}
+
+function companyshowupdate(id) {
     document.getElementById('companynametoupdate').value = companies.find(t => t['companyId'] == id)['companyName'];
+    document.getElementById('faction').value = companies.find(t => t['companyId'] == id)['faction'];
     document.getElementById('updateformdiv').style.display = 'flex';
     companyIdToUpdate = id;
 }
 
-function udpate() {
+function planetshowupdate(id) {
+    document.getElementById('planetnametoupdate').value = planets.find(t => t['planetId'] == id)['planetName'];
+    document.getElementById('updateformdiv').style.display = 'flex';
+    planetIdToUpdate = id;
+}
+
+function shipshowupdate(id) {
+    document.getElementById('shipnametoupdate').value = ships.find(t => t['shipId'] == id)['shipName'];
+    document.getElementById('shiptypetoupdate').value = ships.find(t => t['shipId'] == id)['shipType'];
+    document.getElementById('updateformdiv').style.display = 'flex';
+    shipIdToUpdate = id;
+}
+
+//Company Actions
+
+function companycreate() {
+    let name = document.getElementById('companyname').value;
+    let faction = document.getElementById('faction').value;
+    fetch('http://localhost:27110/company', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            {
+                companyName: name,
+                faction: faction
+            }),
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            companygetdata();
+        })
+        .catch((error) => { console.error('Error:', error); });
+}
+
+function companyupdate() {
     let name = document.getElementById('companynametoupdate').value;
     fetch('http://localhost:27110/company', {
         method: 'PUT',
@@ -95,26 +187,22 @@ function udpate() {
         .then(response => response)
         .then(data => {
             console.log('Success:', data);
-            getdata();
+            companygetdata();
         })
         .catch((error) => { console.error('Error:', error); });
     document.getElementById('updateformdiv').style.display = 'none';
 }
 
-function create() {
-    let name = document.getElementById('companyname').value;
-    fetch('http://localhost:27110/company', {
-        method: 'POST',
+function companyremove(id) {
+    fetch('http://localhost:27110/company/' + id, {
+        method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
-        body: JSON.stringify(
-            { companyName: name }),
+        body: null
     })
         .then(response => response)
-        .then(data =>
-        {
+        .then(data => {
             console.log('Success:', data);
-            getdata();
+            companygetdata();
         })
-        .catch((error) => { console.error('Error:', error); });
-        
+        .catch((error) => { console.error('Error:', error); })
 }
