@@ -14,11 +14,22 @@ namespace TFAF52_HFT_2022232.WPFClient
 {
     public class MainWindowViewModel : ObservableRecipient
     {
+        RestService rs;
         public RestCollection<Company> Companies { get; set; }
 
         public RestCollection<Planet> Planets { get; set; }
 
         public RestCollection<Ship> Ships { get; set; }
+
+        public List<Company> ShipManufacturerList { get; set; }
+
+        public List<Planet> OwnedbyCompanyList { get; set; }
+
+        public List<Ship> ShipOfFactionsList { get; set; }
+
+        public List<Company> OwnerOfPlanetList { get; set; }
+
+        public List<FactionCounted> FactionCounteds { get; set; }
 
         private Company selectedCompany;
 
@@ -53,8 +64,7 @@ namespace TFAF52_HFT_2022232.WPFClient
                     selectedPlanet = new Planet()
                     {
                         PlanetName = value.PlanetName,
-                        PlanetId = value.PlanetId,
-                        CompanyId = value.CompanyId
+                        PlanetId = value.PlanetId
                     };
                     OnPropertyChanged();
                     (DeleteCompanyCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -75,14 +85,18 @@ namespace TFAF52_HFT_2022232.WPFClient
                     {
                         ShipName = value.ShipName,
                         ShipId = value.ShipId,
-                        ShipType = value.ShipType,
-                        CompanyId = value.CompanyId
+                        ShipType = value.ShipType
                     };
                     OnPropertyChanged();
                     (DeleteCompanyCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }
+
+        public string ShipManufacturer { get; set; }
+        public string Ownedbycompany { get; set; }
+        public string ShipOfFactions { get; set; }
+        public string OwnerOfPlanet { get; set; }
 
         #region Commands
 
@@ -104,6 +118,14 @@ namespace TFAF52_HFT_2022232.WPFClient
 
         public ICommand UpdatePlanetCommand { get; set; }
 
+        public ICommand ShipManufacturersCommand { get; set; }
+
+        public ICommand OwnedbycompanyCommand { get; set; }
+
+        public ICommand ShipOfFactionsCommand { get; set; }
+
+        public ICommand OwnerOfPlanetCommand { get; set; }
+
         #endregion
 
         public static bool IsInDesignMode
@@ -122,6 +144,8 @@ namespace TFAF52_HFT_2022232.WPFClient
                 Companies = new RestCollection<Company>("http://localhost:27110/", "company", "hub");
                 Planets = new RestCollection<Planet>("http://localhost:27110/", "planet", "hub");
                 Ships = new RestCollection<Ship>("http://localhost:27110/", "ship", "hub");
+
+                rs = new RestService("http://localhost:27110/");
 
                 // Company Commands
 
@@ -156,7 +180,6 @@ namespace TFAF52_HFT_2022232.WPFClient
                     Planets.Add(new Planet()
                     {
                         PlanetName = SelectedPlanet.PlanetName
-
                     });
                 });
 
@@ -182,8 +205,7 @@ namespace TFAF52_HFT_2022232.WPFClient
                     Ships.Add(new Ship()
                     {
                         ShipName = SelectedShip.ShipName,
-                        ShipType = SelectedShip.ShipType,
-                        CompanyId = SelectedShip.CompanyId
+                        ShipType = SelectedShip.ShipType
                     });
                 });
 
@@ -201,6 +223,36 @@ namespace TFAF52_HFT_2022232.WPFClient
                     return SelectedShip != null;
                 });
                 SelectedShip = new Ship();
+
+                ShipManufacturersCommand = new RelayCommand(() =>
+                {
+                    //Returns the Company who builds the given Ship
+                    ShipManufacturerList = rs.Get<Company>("stat/shipManufacturers/" + ShipManufacturer);
+                });
+
+                OwnedbycompanyCommand = new RelayCommand(() =>
+                {
+                    //Returns given Company's Planet(s)
+                    OwnedbyCompanyList = rs.Get<Planet>("stat/ownedByCompany/" + Ownedbycompany);
+                });
+
+                ShipOfFactionsCommand = new RelayCommand(() =>
+                {
+                    //Returns a Faction's Ships
+                    ShipOfFactionsList = rs.Get<Ship>("stat/shipOfFactions/" + ShipOfFactions);
+                });
+
+                OwnerOfPlanetCommand = new RelayCommand(() =>
+                {
+                    //Returns which Company owns the given Planet
+                    OwnerOfPlanetList = rs.Get<Company>("stat/ownerOfPlanet" + OwnerOfPlanet);
+                });
+                
+                ////Returns how many ship each faction has
+                FactionCounteds = rs.Get<FactionCounted>("stat/shipFactions");
+
+                //List<Company> Q1 = rs.Get<Company>("stat/shipManufacturers/" + ShipManufacturer);
+                ;
             }
         }
     }
