@@ -96,7 +96,7 @@ namespace TFAF52_HFT_2022232.Repository
                 new Ship(){ShipId = 13, ShipName = "Aggressor-class Star Destroyer", ShipType = "Capital ship", CompanyId = 7},
                 new Ship(){ShipId = 14, ShipName = "Interceptor IV Frigate", ShipType = "Frigate", CompanyId = 3},
                 new Ship(){ShipId = 15, ShipName = "Vengeance-class frigate ", ShipType = "Frigate", CompanyId = 3},
-                new Ship(){ShipId = 16, ShipName = "Venator I-class Star Destroyer", ShipType = "Capital ship", CompanyId = 2},
+                new Ship(){ShipId = 16, ShipName = "VenatorI-classStarDestroyer", ShipType = "Capital ship", CompanyId = 2},
                 new Ship(){ShipId = 17, ShipName = "Delta-7 Aethersprite-class light interceptor", ShipType = "Starfighter", CompanyId = 2},
                 new Ship(){ShipId = 18, ShipName = "Lucrehulk-class LH-3210 cargo freighter", ShipType = "Capital ship", CompanyId = 11},
                 new Ship(){ShipId = 19, ShipName = "Providence-class Dreadnought", ShipType = "Capital ship", CompanyId = 4},
