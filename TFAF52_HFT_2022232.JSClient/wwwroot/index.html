@@ -8,15 +8,19 @@
 <body>
     <h1>Company Catalog</h1>
 
-    <div id="formdiv">
+    <div id="companyformdiv">
         <label>Company Name</label>
         <input type="text" id="companyname" />
+        <label>Faction</label>
+        <input type="text" id="faction" />
         <button type="button" onclick="companycreate()">Add Company</button>
     </div>
 
     <div id="companyupdateformdiv">
         <label>Company Name</label>
         <input type="text" id="companynametoupdate" />
+        <label>Faction Name</label>
+        <input type="text" id="factiontoupdate" />
         <button type="button" onclick="companyupdate()">Update Company</button>
     </div>
 
@@ -35,16 +39,16 @@
 
     <h1>Planet Catalog</h1>
 
-    <div id="formdiv">
-        <label>Company Name</label>
-        <input type="text" id="companyname" />
-        <button type="button" onclick="create()">Add Company</button>
+    <div id="planetformdiv">
+        <label>Planet Name</label>
+        <input type="text" id="planetname" />
+        <button type="button" onclick="planetcreate()">Add Planet</button>
     </div>
 
     <div id="planetupdateformdiv">
-        <label>Company Name</label>
-        <input type="text" id="companynametoupdate" />
-        <button type="button" onclick="update()">Update Company</button>
+        <label>Planet Name</label>
+        <input type="text" id="planetnametoupdate" />
+        <button type="button" onclick="planetupdate()">Update Planet</button>
     </div>
 
     <table>
@@ -52,25 +56,32 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>CompanyID</th>
+                <!--<th>CompanyID</th>-->
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody> id="planetresultarea"</tbody>
+        <tbody id="planetresultarea">
+        </tbody>
     </table>
 
     <h1>Ship Catalog</h1>
 
-    <div id="formdiv">
-        <label>Company Name</label>
-        <input type="text" id="companyname" />
-        <button type="button" onclick="create()">Add Company</button>
+    <div id="shipformdiv">
+        <label>Ship Name</label>
+        <input type="text" id="shipname" />
+        <label>Ship Type</label>
+        <input type="text" id="shiptype" />
+        <button type="button" onclick="shipcreate()">Add Ship</button>
     </div>
 
     <div id="shipupdateformdiv">
-        <label>Company Name</label>
-        <input type="text" id="companynametoupdate" />
-        <button type="button" onclick="update()">Update Company</button>
+        <label>Ship Name</label>
+        <input type="text" id="shipnametoupdate" />
+        <label>Ship Type</label>
+        <input type="text" id="shiptypetoupdate" />
+        <!--<label>CompanyID</label>
+        <input type="text" id="shipcompanyidtoupdate" />-->
+        <button type="button" onclick="shipupdate()">Update Ship</button>
     </div>
 
     <table>
@@ -79,11 +90,103 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Shiptype</th>
-                <th>CompanyID</th>
+                <!--<th>CompanyID</th>-->
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody> id="shipresultarea"</tbody>
+        <tbody id="shipresultarea">
+        </tbody>
+    </table>
+
+    <h1>Non-Cruds</h1>
+
+    <h2>ShipFactions</h2>
+    <label>Shows how many ships each factions have</label>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody id="shipfactionsresultarea">
+        </tbody>
+    </table>
+
+
+    <h2>ShipManufacturers</h2>
+    <label>Returns the Company who builds the given Ship</label>
+    <div id="shipformdiv">
+        <label>Ship Name</label>
+        <input type="text" id="shipnameget" />
+        <button type="button" onclick="getshipmanufacturers()">List!</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Faction</th>
+            </tr>
+        </thead>
+        <tbody id="shipmanufacturersresultarea">
+        </tbody>
+    </table>
+
+    <h2>ShipOfFactions</h2>
+    <label>Returns a Faction's Ships</label>
+    <div id="companyformdiv">
+        <label>Faction</label>
+        <input type="text" id="factionget" />
+        <button type="button" onclick="getshipoffactions()">List!</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody id="shipoffactionsresultarea">
+        </tbody>
+    </table>
+
+    <h2>OwnedByCompany</h2>
+    <label>Returns given Company's Planet(s)</label>
+    <div id="companyformdiv">
+        <label>Company</label>
+        <input type="text" id="companyget" />
+        <button type="button" onclick="getownedbycompany()">List!</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody id="ownedbycompanyresultarea">
+        </tbody>
+    </table>
+
+    <h2>OwnerOfPlanet</h2>
+    <label>Returns which Company owns the given Planet</label>
+    <div id="planetformdiv">
+        <label>Planet</label>
+        <input type="text" id="planetget" />
+        <button type="button" onclick="getownerofplanet()">List!</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Faction</th>
+            </tr>
+        </thead>
+        <tbody id="ownerofplanetresultarea">
+        </tbody>
     </table>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
