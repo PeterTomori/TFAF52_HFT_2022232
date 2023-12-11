@@ -18,33 +18,93 @@ th {
     background-color: lightblue;
 }
 
-#updateformdiv {
+#companyupdateformdiv {
     display: none;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
-    #updateformdiv label, button, input {
+    #companyupdateformdiv label, button, input {
         margin: 10px;
         padding: 7px;
     }
 
-    #updateformdiv label {
+    #companyupdateformdiv label {
         font-weight: bolder;
     }
 
-#formdiv {
+#planetupdateformdiv {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #planetupdateformdiv label, button, input {
+        margin: 10px;
+        padding: 7px;
+    }
+
+    #planetupdateformdiv label {
+        font-weight: bolder;
+    }
+
+#shipupdateformdiv {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #shipupdateformdiv label, button, input {
+        margin: 10px;
+        padding: 7px;
+    }
+
+    #shipupdateformdiv label {
+        font-weight: bolder;
+    }
+
+#companyformdiv {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
-    #formdiv label, button, input {
+    #companyformdiv label, button, input {
         margin: 10px;
         padding: 7px;
     }
 
-    #formdiv label {
+    #companyformdiv label {
+        font-weight: bolder;
+    }
+
+#planetformdiv {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #planetformdiv label, button, input {
+        margin: 10px;
+        padding: 7px;
+    }
+
+    #planetformdiv label {
+        font-weight: bolder;
+    }
+
+#shipformdiv {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #shipformdiv label, button, input {
+        margin: 10px;
+        padding: 7px;
+    }
+
+    #shipformdiv label {
         font-weight: bolder;
     }
 
